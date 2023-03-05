@@ -1,0 +1,94 @@
+.root {
+  max-width: 1000px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 20px;
+}
+
+.wish {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(240, 185, 121, 0.7);
+  gap: 50px;
+  border: 3px solid rgba(67, 60, 60, 0.879);
+  border-radius: 5px;
+}
+
+.wishText {
+  font-size: 18px;
+  background-color: rgba(255, 255, 255, 0.926);
+  padding: 4px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.delete {
+  width: 120px;
+  height: 30px;
+  font-size: 15px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.delete:hover {
+  background-color: rgba(224, 30, 30, 0.5);
+  border: 2px solid rgb(107, 0, 0);
+}
+
+.edit {
+  width: 120px;
+  height: 30px;
+  font-size: 15px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.edit:hover {
+  background-color: rgba(39, 82, 190, 0.5);
+  border: 2px solid rgb(0, 98, 255);
+}
+
+.save {
+  width: 120px;
+  height: 30px;
+  font-size: 15px;
+  border: 1px solid black;
+  border-radius: 3px;
+
+}
+
+.save:hover {
+  background-color: rgba(33, 134, 33, 0.5);
+  border: 2px solid rgb(0, 67, 12);
+}
+
+.radioButtons {
+  display: flex;
+  align-items: center;
+}
+
+.firstRB {
+  height: 10px;
+  width: 10px;
+}
+
+.secondRB {
+  height: 13px;
+  width: 13px;
+}
+
+.thirdRB {
+  height: 16px;
+  width: 16px;
+}
