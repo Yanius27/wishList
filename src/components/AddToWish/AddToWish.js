@@ -15,7 +15,7 @@ function AddToWish({ wishes, setWish }) {
         {
           id: generateId(),
           title: value,
-          priority: "gold",
+          priority: null
         },
       ]);
     } else {

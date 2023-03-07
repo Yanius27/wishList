@@ -13,8 +13,9 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background-color: rgba(240, 185, 121, 0.7);
+  box-sizing: border-box;
+  padding: 15px;
+  background-color: rgba(169, 155, 155, 0.934);
   gap: 50px;
   border: 3px solid rgba(67, 60, 60, 0.879);
   border-radius: 5px;
@@ -30,12 +31,13 @@
 
 .buttons {
   display: flex;
+  align-items: center;
   gap: 15px;
 }
 
 .delete {
   width: 120px;
-  height: 30px;
+  height: 40px;
   font-size: 15px;
   border: 1px solid black;
   border-radius: 3px;
@@ -48,7 +50,7 @@
 
 .edit {
   width: 120px;
-  height: 30px;
+  height: 40px;
   font-size: 15px;
   border: 1px solid black;
   border-radius: 3px;
@@ -72,22 +74,12 @@
   border: 2px solid rgb(0, 67, 12);
 }
 
-.radioButtons {
-  display: flex;
-  align-items: center;
-}
 
-.firstRB {
-  height: 10px;
-  width: 10px;
-}
 
-.secondRB {
-  height: 13px;
-  width: 13px;
-}
-
-.thirdRB {
-  height: 16px;
-  width: 16px;
+.priority {
+  width: 100px;
+  height: 40px;
+  font-size: 15px;
+  border: 1px solid black;
+  border-radius: 3px;
 }

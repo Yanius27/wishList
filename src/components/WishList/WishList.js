@@ -2,42 +2,56 @@ import React, { useState } from "react";
 import styles from "./WishList.module.css";
 
 function WishList({ wishes, setWish }) {
-  const [edit, setEdit] = useState(null);
-  const [value, setValue] = useState("");
+  const [selectedWishId, setSelectedWishId] = useState(null);
+  const [selectedWishValue, setSelectedWishValue] = useState("");
+  const [selectedPriority, setPriority] = useState(null);
 
-  function deleteWish(id) {
-    let newWishes = [...wishes].filter((item) => item.id !== id);
+  function deleteWish(item) {
+    let newWishes = [...wishes].filter((elem) => elem.id !== item.id);
     setWish(newWishes);
   }
 
-  function editWish(id, title) {
-    setEdit(id);
-    setValue(title);
+  function editWish(item) {
+    setSelectedWishId(item.id);
+    setSelectedWishValue(item.title);
   }
 
-  function saveEdit(id) {
-    let newWishes = [...wishes].map((item) => {
-      if (item.id == id) {
-        item.title = value;
+  function saveEdit(item) {
+    let newWishes = [...wishes].map((elem) => {
+      if (elem.id === item.id) {
+        elem.title = selectedWishValue;
       }
-      return item;
+      return elem;
     });
     setWish(newWishes);
-    setEdit(null);
+    setSelectedWishId(null);
+  }
+
+  function setSelectedPriority(item){
+    let newestWishes = [...wishes].map((elem) => {
+      if (elem.id === item.id) {
+        console.log(selectedPriority);
+        elem.priority = selectedPriority;
+        console.log(elem);
+      }
+      return elem;
+    });
+    setWish(newestWishes);
+    setPriority(null);
   }
 
   return (
     <div className={styles.root}>
       {wishes.map((item) => (
         <div key={item.id}>
-          {edit == item.id ? (
+          {selectedWishId === item.id ? (
             <div className={styles.wish}>
               <input
                 className={styles.wishText}
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+                value={selectedWishValue}
+                onChange={(e) => setSelectedWishValue(e.target.value)}
               />
-              <button className={styles.save} onClick={() => saveEdit(item.id)}>
+              <button className={styles.save} onClick={() => saveEdit(item)}>
                 Сохранить
               </button>
             </div>
@@ -47,21 +61,22 @@ function WishList({ wishes, setWish }) {
               <div className={styles.buttons}>
                 <button
                   className={styles.delete}
-                  onClick={() => deleteWish(item.id)}
+                  onClick={() => deleteWish(item)}
                 >
                   Удалить
                 </button>
                 <button
                   className={styles.edit}
-                  onClick={() => editWish(item.id, item.title)}
+                  onClick={() => editWish(item)}
                 >
                   Редактировать
                 </button>
-                <div className={styles.radioButtons}>
-                  <input className={styles.firstRB} type="radio"></input>
-                  <input className={styles.secondRB} type="radio"></input>
-                  <input className={styles.thirdRB} type="radio"></input>
-                </div>
+                  <select className={styles.priority} onChange={(e, value) => {setPriority(e.target.value); setSelectedPriority(item);}}>
+                    <option>Приоритет</option>
+                    <option>Высокий</option>
+                    <option>Средний</option>
+                    <option>Низкий</option>
+                  </select>
               </div>
             </div>
           )}
