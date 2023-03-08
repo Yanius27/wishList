@@ -3,11 +3,11 @@ import styles from "./AddToWish.module.css";
 
 function AddToWish({ wishes, setWish }) {
   const [selectedPriority, setPriority] = useState(null);
+  const [value, setValue] = useState("");
+
   function generateId() {
     return Math.round(Math.random() * 10000);
-  }
-
-  const [value, setValue] = useState("");
+  }//функция для генерации уникального id
 
   function saveWish() {
     if (value) {
@@ -16,7 +16,7 @@ function AddToWish({ wishes, setWish }) {
         {
           id: generateId(),
           title: value,
-          priority: null
+          priority: selectedPriority,
         },
       ]);
     } else {
@@ -24,7 +24,7 @@ function AddToWish({ wishes, setWish }) {
     }
 
     setValue("");
-  }
+  }//сохраняем желание используя хук useState
 
   return (
     <div className={styles.root}>
@@ -35,18 +35,21 @@ function AddToWish({ wishes, setWish }) {
         onChange={(e) => setValue(e.target.value)}
       />
       <label className={styles.selectGroup}>
-          <span className={styles.selectText}>Приоритет</span>
-          <select className={styles.priority} onChange={(e, value) => setPriority(e.target.value)}>
-            <option>Высокий</option>
-            <option>Средний</option>
-            <option>Низкий</option>
+        <span className={styles.selectText}>Приоритет</span>
+        <select
+          className={styles.priority}
+          onChange={(e, value) => setPriority(e.target.value)}
+        >
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
         </select>
       </label>
       <button className={styles.inputButton} onClick={() => saveWish()}>
         Сохранить
       </button>
     </div>
-  );
+  );//возвращаем вёрстку
 }
 
 export default AddToWish;

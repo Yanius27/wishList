@@ -15,17 +15,19 @@
   align-items: center;
   box-sizing: border-box;
   padding: 15px;
-  background-color: rgba(169, 155, 155, 0.934);
+  background-color: tan;
   gap: 50px;
   border: 3px solid rgba(67, 60, 60, 0.879);
   border-radius: 5px;
 }
 
 .wishText {
-  height: 30px;
+  display: flex;
+  align-items: center;
+  height: 40px;
   font-size: 18px;
-  background-color: rgba(255, 255, 255, 0.926);
-  padding: 4px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0 8px;
   border: 1px solid black;
   border-radius: 3px;
 }

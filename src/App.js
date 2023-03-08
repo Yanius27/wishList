@@ -5,7 +5,9 @@ import AddToWish from "./components/AddToWish/AddToWish";
 import WishList from "./components/WishList/WishList";
 
 function App() {
-  const [wishes, setWish] = useState([]);
+  const [wishes, setWish] = useState(
+    JSON.parse(localStorage.getItem("wishes")) || []
+  );
 
   return (
     <div className="App">

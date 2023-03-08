@@ -1,33 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./WishList.module.css";
 
 function WishList({ wishes, setWish }) {
+  useEffect(() => {
+    localStorage.setItem("wishes", JSON.stringify(wishes));
+  }, [wishes]);//используем хук useEffect чтобы сохранить массив с желаниями в localStorage
+
   const [selectedWishId, setSelectedWishId] = useState(null);
   const [selectedWishValue, setSelectedWishValue] = useState("");
   const [selectedPriority, setPriority] = useState(null);
 
   function deleteWish(item) {
     let newWishes = [...wishes].filter((elem) => elem.id !== item.id);
-    setWish(newWishes);
+    setWish(newWishes);//удаляем желание и обновляем state желаний
   }
 
   function editWish(item) {
     setSelectedWishId(item.id);
     setSelectedWishValue(item.title);
-  }
+  }//редактируем желание используя хук useState
+
+  function resetState() {
+    setSelectedWishId(null);
+    setSelectedWishValue("");
+  }//обнуляем state id желания и его текста
 
   function saveEdit(item) {
-    let newWishes = [...wishes].map((elem) => {
-      if (elem.id === item.id) {
-        elem.title = selectedWishValue;
-        elem.priority = selectedPriority;
-      }
-      return elem;
-    });
-    setWish(newWishes);
-    setSelectedWishId(null);
-    console.log(wishes);
-  }
+    if (selectedWishValue !== "") {
+      let newWishes = [...wishes].map((elem) => {
+        if (elem.id === item.id) {
+          elem.title = selectedWishValue;
+          elem.priority = selectedPriority;
+        }
+        return elem;
+      });
+      setWish(newWishes);
+      resetState();
+    } else {
+      return;
+    }
+  }//вносим в свойства нашего объекта желания актуальные значения, обновляем state желаний, обнуляем state id желания и его текста
 
   return (
     <div className={styles.root}>
@@ -43,15 +55,18 @@ function WishList({ wishes, setWish }) {
                 />
                 <label className={styles.selectGroup}>
                   <span className={styles.selectText}>Приоритет</span>
-                  <select className={styles.priority} onChange={(e, value) => setPriority(e.target.value)}>
-                    <option>Высокий</option>
-                    <option>Средний</option>
-                    <option>Низкий</option>
+                  <select
+                    className={styles.priority}
+                    onChange={(e, value) => setPriority(e.target.value)}
+                  >
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
                   </select>
                 </label>
               </div>
-              
-              <button className={styles.save} onClick={() => saveEdit(item, 'title', selectedWishValue)}>
+
+              <button className={styles.save} onClick={() => saveEdit(item)}>
                 Сохранить
               </button>
             </div>
@@ -65,10 +80,7 @@ function WishList({ wishes, setWish }) {
                 >
                   Удалить
                 </button>
-                <button
-                  className={styles.edit}
-                  onClick={() => editWish(item)}
-                >
+                <button className={styles.edit} onClick={() => editWish(item)}>
                   Редактировать
                 </button>
               </div>
@@ -78,6 +90,6 @@ function WishList({ wishes, setWish }) {
       ))}
     </div>
   );
-}
+}//возвращаем вёрстку
 
 export default WishList;
