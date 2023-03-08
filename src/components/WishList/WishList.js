@@ -16,16 +16,17 @@ function WishList({ wishes, setWish }) {
     setSelectedWishValue(item.title);
   }
 
-  function saveEdit(item, property, state) {
+  function saveEdit(item) {
     let newWishes = [...wishes].map((elem) => {
       if (elem.id === item.id) {
-        elem[property] = state;
+        elem.title = selectedWishValue;
+        elem.priority = selectedPriority;
       }
       return elem;
     });
     setWish(newWishes);
-    console.log(wishes);
     setSelectedWishId(null);
+    console.log(wishes);
   }
 
   return (
@@ -34,11 +35,22 @@ function WishList({ wishes, setWish }) {
         <div key={item.id}>
           {selectedWishId === item.id ? (
             <div className={styles.wish}>
-              <input
-                className={styles.wishText}
-                value={selectedWishValue}
-                onChange={(e) => setSelectedWishValue(e.target.value)}
-              />
+              <div className={styles.editGroup}>
+                <input
+                  className={styles.wishText}
+                  value={selectedWishValue}
+                  onChange={(e) => setSelectedWishValue(e.target.value)}
+                />
+                <label className={styles.selectGroup}>
+                  <span className={styles.selectText}>Приоритет</span>
+                  <select className={styles.priority} onChange={(e, value) => setPriority(e.target.value)}>
+                    <option>Высокий</option>
+                    <option>Средний</option>
+                    <option>Низкий</option>
+                  </select>
+                </label>
+              </div>
+              
               <button className={styles.save} onClick={() => saveEdit(item, 'title', selectedWishValue)}>
                 Сохранить
               </button>
@@ -59,12 +71,6 @@ function WishList({ wishes, setWish }) {
                 >
                   Редактировать
                 </button>
-                  <select className={styles.priority} onChange={(e, value) => {setPriority(e.target.value); saveEdit(item, 'priority', selectedPriority);}}>
-                    <option>Приоритет</option>
-                    <option>Высокий</option>
-                    <option>Средний</option>
-                    <option>Низкий</option>
-                  </select>
               </div>
             </div>
           )}

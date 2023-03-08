@@ -25,3 +25,26 @@
 .inputButton:hover {
   border: 2px solid rgb(22, 125, 41);
 }
+
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.selectText {
+  font-size: 18px;
+}
+
+.editGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.priority {
+  width: 90px;
+  height: 30px;
+  font-size: 15px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
