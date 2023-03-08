@@ -16,28 +16,16 @@ function WishList({ wishes, setWish }) {
     setSelectedWishValue(item.title);
   }
 
-  function saveEdit(item) {
+  function saveEdit(item, property, state) {
     let newWishes = [...wishes].map((elem) => {
       if (elem.id === item.id) {
-        elem.title = selectedWishValue;
+        elem[property] = state;
       }
       return elem;
     });
     setWish(newWishes);
+    console.log(wishes);
     setSelectedWishId(null);
-  }
-
-  function setSelectedPriority(item){
-    let newestWishes = [...wishes].map((elem) => {
-      if (elem.id === item.id) {
-        console.log(selectedPriority);
-        elem.priority = selectedPriority;
-        console.log(elem);
-      }
-      return elem;
-    });
-    setWish(newestWishes);
-    setPriority(null);
   }
 
   return (
@@ -51,7 +39,7 @@ function WishList({ wishes, setWish }) {
                 value={selectedWishValue}
                 onChange={(e) => setSelectedWishValue(e.target.value)}
               />
-              <button className={styles.save} onClick={() => saveEdit(item)}>
+              <button className={styles.save} onClick={() => saveEdit(item, 'title', selectedWishValue)}>
                 Сохранить
               </button>
             </div>
@@ -71,7 +59,7 @@ function WishList({ wishes, setWish }) {
                 >
                   Редактировать
                 </button>
-                  <select className={styles.priority} onChange={(e, value) => {setPriority(e.target.value); setSelectedPriority(item);}}>
+                  <select className={styles.priority} onChange={(e, value) => {setPriority(e.target.value); saveEdit(item, 'priority', selectedPriority);}}>
                     <option>Приоритет</option>
                     <option>Высокий</option>
                     <option>Средний</option>
