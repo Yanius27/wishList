@@ -5,10 +5,12 @@ function AddToWish({ wishes, setWish }) {
   const [selectedPriority, setPriority] = useState(null);
   const [value, setValue] = useState("");
 
+  //функция для генерации уникального id
   function generateId() {
     return Math.round(Math.random() * 10000);
-  }//функция для генерации уникального id
+  }
 
+  //сохраняем желание используя хук useState
   function saveWish() {
     if (value) {
       setWish([
@@ -22,10 +24,10 @@ function AddToWish({ wishes, setWish }) {
     } else {
       setWish([...wishes]);
     }
-
     setValue("");
-  }//сохраняем желание используя хук useState
+  }
 
+  //возвращаем вёрстку
   return (
     <div className={styles.root}>
       <input
@@ -49,7 +51,7 @@ function AddToWish({ wishes, setWish }) {
         Сохранить
       </button>
     </div>
-  );//возвращаем вёрстку
+  );
 }
 
 export default AddToWish;

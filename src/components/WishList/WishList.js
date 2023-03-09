@@ -2,29 +2,36 @@ import React, { useEffect, useState } from "react";
 import styles from "./WishList.module.css";
 
 function WishList({ wishes, setWish }) {
+
+  //используем хук useEffect чтобы сохранить массив с желаниями в localStorage
   useEffect(() => {
     localStorage.setItem("wishes", JSON.stringify(wishes));
-  }, [wishes]);//используем хук useEffect чтобы сохранить массив с желаниями в localStorage
+  }, [wishes]);
 
   const [selectedWishId, setSelectedWishId] = useState(null);
   const [selectedWishValue, setSelectedWishValue] = useState("");
   const [selectedPriority, setPriority] = useState(null);
 
+  //удаляем желание и обновляем state желаний
   function deleteWish(item) {
     let newWishes = [...wishes].filter((elem) => elem.id !== item.id);
-    setWish(newWishes);//удаляем желание и обновляем state желаний
+    setWish(newWishes);
   }
 
+  //редактируем желание используя хук useState
   function editWish(item) {
     setSelectedWishId(item.id);
     setSelectedWishValue(item.title);
-  }//редактируем желание используя хук useState
+  }
 
+  //функция для обнуления state id желания и его текста
   function resetState() {
     setSelectedWishId(null);
     setSelectedWishValue("");
-  }//обнуляем state id желания и его текста
+    setPriority(null);
+  }
 
+  //вносим в свойства нашего объекта желания актуальные значения, обновляем state желаний, обнуляем state id желания и его текста
   function saveEdit(item) {
     if (selectedWishValue !== "") {
       let newWishes = [...wishes].map((elem) => {
@@ -39,8 +46,9 @@ function WishList({ wishes, setWish }) {
     } else {
       return;
     }
-  }//вносим в свойства нашего объекта желания актуальные значения, обновляем state желаний, обнуляем state id желания и его текста
+  }
 
+  //возвращаем вёрстку
   return (
     <div className={styles.root}>
       {wishes.map((item) => (
@@ -90,6 +98,6 @@ function WishList({ wishes, setWish }) {
       ))}
     </div>
   );
-}//возвращаем вёрстку
+}
 
 export default WishList;
