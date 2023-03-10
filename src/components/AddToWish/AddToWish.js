@@ -36,18 +36,17 @@ function AddToWish({ wishes, setWish }) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <label className={styles.selectGroup}>
-        <span className={styles.selectText}>Приоритет</span>
-        <select
-          className={styles.priority}
-          onChange={(e) => setPriority(e.target.value)}
-          value={selectedPriority || undefined} 
-        >
-          <option>High</option>
-          <option>Medium</option>
-          <option>Low</option>
-        </select>
-      </label>
+      {/* <span className={styles.selectText}>Приоритет</span> */}
+      <select
+        className={styles.priority}
+        onChange={(e) => setPriority(e.target.value)}
+        value={selectedPriority || undefined}
+      >
+        <option>Приоритет</option>
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+      </select>
       <button className={styles.inputButton} onClick={() => saveWish()}>
         Сохранить
       </button>

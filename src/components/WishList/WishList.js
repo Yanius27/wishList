@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import styles from "./WishList.module.css";
 
 function WishList({ wishes, setWish }) {
-
   const [selectedWishId, setSelectedWishId] = useState(null);
   const [selectedWishValue, setSelectedWishValue] = useState("");
-  const [selectedPriority, setPriority] = useState(null);
+  const [selectedPriority, setPriority] = useState("");
 
   //удаляем желание и обновляем state желаний
   function deleteWish(item) {
@@ -24,7 +23,7 @@ function WishList({ wishes, setWish }) {
   function resetState() {
     setSelectedWishId(null);
     setSelectedWishValue("");
-    setPriority(null);
+    setPriority("");
   }
 
   //вносим в свойства нашего объекта желания актуальные значения, обновляем state желаний, обнуляем state id желания и его текста
@@ -49,12 +48,11 @@ function WishList({ wishes, setWish }) {
     const colors = {
       High: styles.high,
       Medium: styles.medium,
-      Low: styles.low
+      Low: styles.low,
     };
 
     return `${styles.wish} ${colors[priority]}`;
   }
-
 
   //возвращаем вёрстку
   return (
@@ -70,12 +68,13 @@ function WishList({ wishes, setWish }) {
                   onChange={(e) => setSelectedWishValue(e.target.value)}
                 />
                 <label className={styles.selectGroup}>
-                  <span className={styles.selectText}>Приоритет</span>
+                  {/* <span className={styles.selectText}>Приоритет</span> */}
                   <select
                     className={styles.priority}
                     onChange={(e) => setPriority(e.target.value)}
                     value={selectedPriority || undefined}
                   >
+                    <option>Приоритет</option>
                     <option>High</option>
                     <option>Medium</option>
                     <option>Low</option>
