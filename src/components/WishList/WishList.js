@@ -4,7 +4,7 @@ import styles from "./WishList.module.css";
 function WishList({ wishes, setWish }) {
   const [selectedWishId, setSelectedWishId] = useState(null);
   const [selectedWishValue, setSelectedWishValue] = useState("");
-  const [selectedPriority, setPriority] = useState("");
+  const [selectedPriority, setPriority] = useState("High");
 
   //удаляем желание и обновляем state желаний
   function deleteWish(item) {
@@ -44,7 +44,6 @@ function WishList({ wishes, setWish }) {
   }
 
   function getWishClassName(priority) {
-    console.log(priority);
     const colors = {
       High: styles.high,
       Medium: styles.medium,
@@ -68,13 +67,12 @@ function WishList({ wishes, setWish }) {
                   onChange={(e) => setSelectedWishValue(e.target.value)}
                 />
                 <label className={styles.selectGroup}>
-                  {/* <span className={styles.selectText}>Приоритет</span> */}
+                  <span className={styles.selectText}>Приоритет</span>
                   <select
                     className={styles.priority}
                     onChange={(e) => setPriority(e.target.value)}
                     value={selectedPriority || undefined}
                   >
-                    <option>Приоритет</option>
                     <option>High</option>
                     <option>Medium</option>
                     <option>Low</option>

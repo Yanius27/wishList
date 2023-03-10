@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./AddToWish.module.css";
 
 function AddToWish({ wishes, setWish }) {
-  const [selectedPriority, setPriority] = useState(null);
+  const [selectedPriority, setPriority] = useState("High");
   const [value, setValue] = useState("");
 
   //функция для генерации уникального id
@@ -36,17 +36,18 @@ function AddToWish({ wishes, setWish }) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      {/* <span className={styles.selectText}>Приоритет</span> */}
-      <select
-        className={styles.priority}
-        onChange={(e) => setPriority(e.target.value)}
-        value={selectedPriority || undefined}
-      >
-        <option>Приоритет</option>
-        <option>High</option>
-        <option>Medium</option>
-        <option>Low</option>
-      </select>
+      <label className={styles.selectGroup}>
+        <span className={styles.selectText}>Приоритет</span>
+        <select
+          className={styles.priority}
+          onChange={(e) => setPriority(e.target.value)}
+          value={selectedPriority || undefined}
+        >
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+      </label>
       <button className={styles.inputButton} onClick={() => saveWish()}>
         Сохранить
       </button>

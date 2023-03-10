@@ -1,6 +1,8 @@
 .root {
   max-width: 1000px;
+  max-height: 70px;
   margin-top: 30px;
+  box-sizing: border-box;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -26,22 +28,29 @@
   border: 2px solid rgb(22, 125, 41);
 }
 
-/* .selectText {
-  font-size: 18px;
-} */
+.selectText {
+  font-size: 19px;
+}
 
 .editGroup {
   display: flex;
   gap: 10px;
 }
 
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .priority {
   width: 110px;
-  height: 50px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 17px;
+  text-align: center;
   border: 1px solid black;
   border-radius: 3px;
 }
