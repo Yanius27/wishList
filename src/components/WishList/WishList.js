@@ -64,6 +64,7 @@ function WishList({ wishes, setWish }) {
                 <label className={styles.selectGroup}>
                   <span className={styles.selectText}>Приоритет</span>
                   <select
+                    value={selectedPriority}
                     className={styles.priority}
                     onChange={(e, value) => setPriority(e.target.value)}
                   >
