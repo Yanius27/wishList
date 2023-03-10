@@ -1,12 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./WishList.module.css";
 
 function WishList({ wishes, setWish }) {
-
-  //используем хук useEffect чтобы сохранить массив с желаниями в localStorage
-  useEffect(() => {
-    localStorage.setItem("wishes", JSON.stringify(wishes));
-  }, [wishes]);
 
   const [selectedWishId, setSelectedWishId] = useState(null);
   const [selectedWishValue, setSelectedWishValue] = useState("");
@@ -22,6 +17,7 @@ function WishList({ wishes, setWish }) {
   function editWish(item) {
     setSelectedWishId(item.id);
     setSelectedWishValue(item.title);
+    setPriority(item.priority);
   }
 
   //функция для обнуления state id желания и его текста
@@ -48,6 +44,18 @@ function WishList({ wishes, setWish }) {
     }
   }
 
+  function getWishClassName(priority) {
+    console.log(priority);
+    const colors = {
+      High: styles.high,
+      Medium: styles.medium,
+      Low: styles.low
+    };
+
+    return `${styles.wish} ${colors[priority]}`;
+  }
+
+
   //возвращаем вёрстку
   return (
     <div className={styles.root}>
@@ -64,9 +72,9 @@ function WishList({ wishes, setWish }) {
                 <label className={styles.selectGroup}>
                   <span className={styles.selectText}>Приоритет</span>
                   <select
-                    value={selectedPriority}
                     className={styles.priority}
-                    onChange={(e, value) => setPriority(e.target.value)}
+                    onChange={(e) => setPriority(e.target.value)}
+                    value={selectedPriority || undefined}
                   >
                     <option>High</option>
                     <option>Medium</option>
@@ -80,7 +88,7 @@ function WishList({ wishes, setWish }) {
               </button>
             </div>
           ) : (
-            <div className={styles.wish}>
+            <div className={getWishClassName(item.priority)}>
               <div className={styles.wishText}>{item.title}</div>
               <div className={styles.buttons}>
                 <button

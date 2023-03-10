@@ -40,8 +40,8 @@ function AddToWish({ wishes, setWish }) {
         <span className={styles.selectText}>Приоритет</span>
         <select
           className={styles.priority}
-          value={selectedPriority}
-          onChange={(e, value) => setPriority(e.target.value)}
+          onChange={(e) => setPriority(e.target.value)}
+          value={selectedPriority || undefined} 
         >
           <option>High</option>
           <option>Medium</option>

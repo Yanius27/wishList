@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import AddToWish from "./components/AddToWish/AddToWish";
@@ -8,6 +8,11 @@ function App() {
   const [wishes, setWish] = useState(
     JSON.parse(localStorage.getItem("wishes")) || []
   );
+
+   //используем хук useEffect чтобы сохранить массив с желаниями в localStorage
+   useEffect(() => {
+    localStorage.setItem("wishes", JSON.stringify(wishes));
+  }, [wishes]);
 
   return (
     <div className="App">
